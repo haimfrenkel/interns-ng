@@ -1,0 +1,42 @@
+<app-ing></app-ing>
+<p>please tell us about yourself</p>
+<div class="contauner">
+  <div>
+    age
+    <input type="age" id="age" [(ngModel)]="age" placeholder="age" />
+  </div>
+  country <select class="form-select" aria-label="Default select example" [(ngModel)]="country">
+
+
+    <option value="israel">israel</option>
+    <option value="united state">united state</option>
+    <option value="united kingdom">united kingdom</option>
+  </select>
+  <div>
+    city <select class="form-select" aria-label="Default select example" [(ngModel)]="city">
+
+      <option value="jerusalem">jerusalem</option>
+      <option value="tel-aviv">tel-aviv</option>
+      <option value="haifa">haifa</option>
+    </select>
+  </div>
+  <div>
+    graduation
+    <input type="graduation" id="graduation" [(ngModel)]="graduation" placeholder="graduation" />
+  </div>
+  acadaemic Institution <select class="form-select" aria-label="Default select example"
+    [(ngModel)]="acadaemicInstitution">
+
+    <option value="Technion">Technion</option>
+    <option value="Tel Aviv University">Tel Aviv University</option>
+    <option value="ben guryon University">ben guryon University</option>
+
+  </select>
+
+</div>
+
+<button routerLink="/questionnaier2" (click)="register()">next</button>
+<div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+    aria-valuemax="100">0% completed</div>
+</div>

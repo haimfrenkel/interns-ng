@@ -1,0 +1,28 @@
+<app-ing></app-ing>
+<p>please tell us about yourself</p>
+<div class="contauner">
+  <div>
+    medical Institution
+    <input type="medicalInstitution" id="medicalInstitution" [(ngModel)]="medicalInstitution"
+      placeholder="medicalInstitution" />
+  </div>
+  residency <select class="form-select" aria-label="Default select example" [(ngModel)]="residency">
+
+
+    <option value="hadasa">hadasa</option>
+    <option value="tel ashomer">tel ashomer</option>
+    <option value="soroka">soroka</option>
+  </select>
+  <div>
+    department <select class="form-select" aria-label="Default select example" [(ngModel)]="department">
+      <option value="Surgery">Surgery</option>
+      <option value="neurology">neurology</option>
+      <option value="orthopedics">orthopedics</option>
+    </select>
+  </div>
+  <form>
+    <input type="range" name="amountRange" min="0" max="7" value="0" [(ngModel)]="yearInResidency" />
+    {{yearInResidency}}
+
+  </form>
+  <button (click)=" register()" routerLink="/finish">done</button>

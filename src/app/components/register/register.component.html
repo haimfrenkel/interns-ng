@@ -1,0 +1,17 @@
+<app-ing></app-ing>
+<div class="contauner">
+    <div>
+        <input type="ID" id="ID" [(ngModel)]="ID" placeholder="ID" />
+    </div>
+    <div>
+        <input type="name" id="name" [(ngModel)]="name" placeholder="name" />
+    </div>
+    <div>
+        <input type="email" id="email" [(ngModel)]="email" placeholder="email" />
+    </div>
+    <div>
+        <input type="phon" id="phon" [(ngModel)]="phon" placeholder="phon" />
+    </div>
+   
+    <input type="button" (click)="register()" value="register" routerLink="/password">
+</div>
