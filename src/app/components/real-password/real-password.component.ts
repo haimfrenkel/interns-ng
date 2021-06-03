@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InternsSService } from 'src/app/services/interns-s.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-real-password',
@@ -14,7 +15,6 @@ export class RealPasswordComponent implements OnInit {
   ngOnInit(): void {
   }
   updatePass() {
-    this.internsSService.updatePass(this.password)
-    console.log(this.password);
+   this.internsSService.addUser(this.password);
   }
 }

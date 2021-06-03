@@ -30,7 +30,7 @@ export class PasswordComponent implements OnInit {
       this.next = true
 
 
-      this.internsSService.addUser();
+      
 
         
       this.router.navigate(["/realPassword"]);

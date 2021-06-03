@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -20,7 +20,8 @@ export class InternsSService {
     residency: "",
     department: "",
     yearInResidency: 0,
-    permission: ""
+    permission: "",
+    token: ""
   }
   sms = {
     num1: null,
@@ -29,42 +30,36 @@ export class InternsSService {
     num4: null,
   }
 
-  dataH: User = { _id: '' };
+  localData: User = { _id: '', permission: 0, token: '' };
 
 
   baseURL = 'http://localhost:5000/';
   constructor(private http: HttpClient) { }
 
-
-
-  addUser() {
-    this.http.post<User>(this.baseURL + "api/users/create", { ID: this.intern.ID, name: this.intern.name, email: this.intern.email, phon: this.intern.phon })
-    .subscribe(data => {
-      console.log(data), this.dataH = data
-    })
+  options = {
+    headers: {}
   }
 
-updatePass(password: number){
-  this.http.put(this.baseURL +"api/users/"+ this.dataH._id, {password: password}).subscribe(data=>{
-    console.log(data)
-  })
-}
+
+  addUser(password: string) {
+    this.http.post<User>(this.baseURL + "users/create", Object.assign(this.intern, {password: password})).subscribe(data => {
+        this.localData = data     
+        this.options.headers = new HttpHeaders({ 'token': this.localData.token })
+      })
+  }
+
+
 
   updateUser() {
-    this.http.put(this.baseURL + "api/users/" + this.dataH._id, {
-      ID: this.intern.ID, name: this.intern.name, email: this.intern.email, phon: this.intern.phon,  age: this.intern.age, 
-      country: this.intern.country, city: this.intern.city, graduation: this.intern.graduation, acadaemicInstitution: this.intern.acadaemicInstitution,
-      medicalInstitution: this.intern.medicalInstitution, residency: this.intern.residency, department: this.intern.department,
-      yearInResidency: this.intern.yearInResidency, permission: this.intern.permission
-    }).subscribe(data => {
+    this.http.put(this.baseURL + "api/users/" + this.localData._id, this.intern, this.options).subscribe(data => {
       console.log(data)
-    })
+    });
   }
 
 
   getUser(): Observable<any> {
-    return this.http.get(this.baseURL + "api/users/" + this.dataH._id,{});
-    
+    return this.http.get(this.baseURL + "api/users/" + this.localData._id, {});
+
   }
 
 
@@ -78,5 +73,7 @@ updatePass(password: number){
 
 export interface User {
   _id: String,
-  name?: String
+  permission: Number,
+  token: string
+
 }
